@@ -85,3 +85,6 @@ EdgeLog能很好地支持嵌入式环境，为嵌入式硬件设备能力的扩�
 ## 专业支持
 
 我们根据市场和企业需要，不断迭代，也乐意基于场景特殊性提供专业定制服务。如有需要，前往[联系我们](http://edgelog.devautoops.com)。
+
+## Others
+EdgeLog系统还包括Agent组件，Agent主要用来采集客户端应用程序日志和与Service组件交互，想要了解Agent组件详情，[点击](https://github.com/DevAutoOps/EdgeLog-Agent)。
