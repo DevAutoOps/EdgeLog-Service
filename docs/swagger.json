@@ -1,0 +1,883 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/api/v1/analysis/chart": {
+            "get": {
+                "tags": [
+                    "analysis"
+                ],
+                "summary": "analysis chart",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": " Start time ",
+                        "name": "startTime",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": " End time ",
+                        "name": "endTime",
+                        "in": "query"
+                    }
+                ]
+            }
+        },
+        "/api/v1/analysis/detailed": {
+            "get": {
+                "tags": [
+                    "analysis"
+                ],
+                "summary": "analysis detailed",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": " size",
+                        "name": "size",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": " status",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": " reqUrl",
+                        "name": "reqUrl",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": " clientIp",
+                        "name": "clientIp",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": " Start time ",
+                        "name": "startTime",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": " End time ",
+                        "name": "endTime",
+                        "in": "query"
+                    }
+                ]
+            }
+        },
+        "/api/v1/analysis/list": {
+            "get": {
+                "tags": [
+                    "analysis"
+                ],
+                "summary": "analysis list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": " status",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": " reqUrl",
+                        "name": "reqUrl",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": " clientIp",
+                        "name": "clientIp",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": " Start time ",
+                        "name": "startTime",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": " End time ",
+                        "name": "endTime",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": " Interface timeout ",
+                        "name": "timeout",
+                        "in": "query"
+                    }
+                ]
+            }
+        },
+        "/api/v1/bigscreen/1": {
+            "get": {
+                "tags": [
+                    "bigscreen"
+                ],
+                "summary": "Warn big screen chart"
+            }
+        },
+        "/api/v1/bigscreen/2": {
+            "get": {
+                "tags": [
+                    "bigscreen"
+                ],
+                "summary": "Warn big screen chart"
+            }
+        },
+        "/api/v1/bigscreen/3": {
+            "get": {
+                "tags": [
+                    "bigscreen"
+                ],
+                "summary": "Warn big screen chart",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": " time type, 0 1hour, 1 1day, 2 7day ",
+                        "name": "type",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\": 200, \"data\": [...]}",
+                        "schema": {
+                            "$ref": "#/definitions/commun.WarnChart"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/bigscreen/5": {
+            "get": {
+                "tags": [
+                    "bigscreen"
+                ],
+                "summary": "screen 5"
+            }
+        },
+        "/api/v1/bigscreen/6": {
+            "get": {
+                "tags": [
+                    "bigscreen"
+                ],
+                "summary": "screen 6"
+            }
+        },
+        "/api/v1/download/download_agent": {
+            "get": {
+                "tags": [
+                    "download"
+                ],
+                "summary": "window agent download"
+            }
+        },
+        "/api/v1/download/download_log": {
+            "get": {
+                "tags": [
+                    "download"
+                ],
+                "summary": "log download",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": " size",
+                        "name": "size",
+                        "in": "query"
+                    }
+                ]
+            }
+        },
+        "/api/v1/keyword/all": {
+            "get": {
+                "tags": [
+                    "keyword"
+                ],
+                "summary": "All keywords"
+            }
+        },
+        "/api/v1/monitor/nodeMonitor": {
+            "get": {
+                "tags": [
+                    "Monitor"
+                ],
+                "summary": "Query agent status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "chart type, 0 Cpu usage, 1 Cpu load, 2 Mem rate, 3 Disk part rate, 4 Network recv, 5 Network send",
+                        "name": "chartType",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "time type, 0 real time, 1 24hour, 2 7days, 3 custom",
+                        "name": "timeType",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "time granular, 0 1minute, 1 5minute, 2 15minute, 3 1hour, 4 1day",
+                        "name": "granular",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Used when time type = 3 is customized",
+                        "name": "beginTime",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Used when time type = 3 is customized",
+                        "name": "endTime",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\": 200, \"data\": [...]}",
+                        "schema": {
+                            "$ref": "#/definitions/commun.MonitorChart2"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/monitor/nodeStatus": {
+            "get": {
+                "tags": [
+                    "Monitor"
+                ],
+                "summary": "Query agent status",
+                "responses": {
+                    "200": {
+                        "description": "{\"code\": 200, \"data\": [...]}",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Node"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/node/editNode": {
+            "post": {
+                "tags": [
+                    "Node"
+                ],
+                "summary": "Query agent status",
+                "parameters": [
+                    {
+                        "description": "node name",
+                        "name": "name",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "node ip",
+                        "name": "ip",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "node port",
+                        "name": "port",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "ssh account",
+                        "name": "account",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ssh password",
+                        "name": "password",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "agent port",
+                        "name": "agentPort",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "system type",
+                        "name": "os",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "nginx conf path",
+                        "name": "conf",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "nginx logs path",
+                        "name": "logs",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "template id",
+                        "name": "templateId",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\": 200, \"data\": [...]}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Node"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/node/getNode": {
+            "get": {
+                "tags": [
+                    "Node"
+                ],
+                "summary": "Query agent status",
+                "responses": {
+                    "200": {
+                        "description": "{\"code\": 200, \"data\": [...]}",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Node"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/node/initNode": {
+            "post": {
+                "tags": [
+                    "base / node"
+                ],
+                "summary": "node agent install"
+            }
+        },
+        "/api/v1/template/delete/:id": {
+            "delete": {
+                "tags": [
+                    "template"
+                ],
+                "summary": "template delete",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": " template  ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/api/v1/template/dropDown": {
+            "get": {
+                "tags": [
+                    "template"
+                ],
+                "summary": "template dropDown"
+            }
+        },
+        "/api/v1/template/info/:id": {
+            "get": {
+                "tags": [
+                    "template"
+                ],
+                "summary": "template info",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": " template  ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/api/v1/template/manageList": {
+            "get": {
+                "tags": [
+                    "template"
+                ],
+                "summary": "template manageList",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": " Entries per page ",
+                        "name": "pageSize",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": " Page number ",
+                        "name": "pageNum",
+                        "in": "query"
+                    }
+                ]
+            }
+        },
+        "/api/v1/template/save": {
+            "post": {
+                "tags": [
+                    "template"
+                ],
+                "summary": "template save",
+                "parameters": [
+                    {
+                        "description": " object ",
+                        "name": "Template",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/table.Template"
+                        }
+                    }
+                ]
+            }
+        },
+        "/api/v1/template/update/:id": {
+            "post": {
+                "tags": [
+                    "template"
+                ],
+                "summary": "template update",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": " template  ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/api/v1/user/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "login",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": " username ",
+                        "name": "username",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": " password ",
+                        "name": "password",
+                        "in": "formData",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/api/v1/user/logout": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "logout"
+            }
+        },
+        "/api/v1/warn/getPushConfig": {
+            "get": {
+                "tags": [
+                    "Warn"
+                ],
+                "summary": "getPushConfig",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": " smtp|wechat|dingtalk ",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/api/v1/warn/getThreshold": {
+            "get": {
+                "tags": [
+                    "warn"
+                ],
+                "summary": "getThreshold"
+            }
+        },
+        "/api/v1/warn/savePushConfig": {
+            "post": {
+                "tags": [
+                    "warn"
+                ],
+                "summary": "savePushConfig",
+                "parameters": [
+                    {
+                        "description": " object ",
+                        "name": "PushConfig",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/notice.PushConfig"
+                        }
+                    }
+                ]
+            }
+        },
+        "/api/v1/warn/saveThreshold": {
+            "post": {
+                "tags": [
+                    "warn"
+                ],
+                "summary": "saveThreshold",
+                "parameters": [
+                    {
+                        "description": " object ",
+                        "name": "Threshold",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handle.Threshold"
+                        }
+                    }
+                ]
+            }
+        },
+        "/api/v1/warn/warnList": {
+            "get": {
+                "tags": [
+                    "warn"
+                ],
+                "summary": "warnList",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": " type ",
+                        "name": "type",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": " beginTime ",
+                        "name": "beginTime",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": " endTime ",
+                        "name": "endTime",
+                        "in": "formData",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/api/v1/warn/warnStatistics": {
+            "get": {
+                "tags": [
+                    "warn"
+                ],
+                "summary": "warnStatistics",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": " beginTime ",
+                        "name": "beginTime",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": " endTime ",
+                        "name": "endTime",
+                        "in": "formData",
+                        "required": true
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "commun.MonitorChart2": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "title",
+                    "type": "string"
+                },
+                "x": {
+                    "description": "X-axis, time data",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "y": {
+                    "description": "Y-axis, data",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "commun.WarnChart": {
+            "type": "object",
+            "properties": {
+                "column": {
+                    "$ref": "#/definitions/commun.MonitorChart2"
+                },
+                "pie": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/commun.WarnPieItem"
+                    }
+                }
+            }
+        },
+        "commun.WarnPieItem": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "percentage": {
+                    "type": "number"
+                }
+            }
+        },
+        "handle.Threshold": {
+            "type": "object",
+            "properties": {
+                "cpu": {
+                    "type": "integer"
+                },
+                "disk": {
+                    "type": "integer"
+                },
+                "memory": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.Node": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "agentPort": {
+                    "type": "integer"
+                },
+                "appStatus": {
+                    "type": "string"
+                },
+                "conf": {
+                    "type": "string"
+                },
+                "ip": {
+                    "type": "string"
+                },
+                "isInit": {
+                    "type": "boolean"
+                },
+                "logs": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "os": {
+                    "type": "integer"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "templateId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "notice.DingTalk": {
+            "type": "object",
+            "properties": {
+                "agentID": {
+                    "type": "string"
+                },
+                "appKey": {
+                    "type": "string"
+                },
+                "appSecret": {
+                    "type": "string"
+                },
+                "hookAddr": {
+                    "type": "string"
+                },
+                "hookSecret": {
+                    "type": "string"
+                },
+                "hookTitle": {
+                    "type": "string"
+                },
+                "receive": {
+                    "type": "string"
+                },
+                "sessionID": {
+                    "type": "string"
+                }
+            }
+        },
+        "notice.PushConfig": {
+            "type": "object",
+            "properties": {
+                "dingTalk": {
+                    "$ref": "#/definitions/notice.DingTalk"
+                },
+                "smtp": {
+                    "$ref": "#/definitions/notice.SMTP"
+                },
+                "weChat": {
+                    "$ref": "#/definitions/notice.WeChat"
+                }
+            }
+        },
+        "notice.SMTP": {
+            "type": "object",
+            "properties": {
+                "addr": {
+                    "type": "string"
+                },
+                "pass": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer"
+                },
+                "receiveEmail": {
+                    "type": "string"
+                },
+                "ssl": {
+                    "type": "boolean"
+                },
+                "topic": {
+                    "type": "string"
+                },
+                "user": {
+                    "type": "string"
+                }
+            }
+        },
+        "notice.WeChat": {
+            "type": "object",
+            "properties": {
+                "eappID": {
+                    "type": "integer"
+                },
+                "eappVoucher": {
+                    "type": "string"
+                },
+                "eid": {
+                    "type": "string"
+                },
+                "receiveUserID": {
+                    "type": "string"
+                }
+            }
+        },
+        "table.Template": {
+            "type": "object",
+            "properties": {
+                "format": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "separator": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

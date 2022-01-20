@@ -1,0 +1,573 @@
+definitions:
+  commun.MonitorChart2:
+    properties:
+      title:
+        description: title
+        type: string
+      x:
+        description: X-axis, time data
+        items:
+          type: string
+        type: array
+      "y":
+        description: Y-axis, data
+        items:
+          type: string
+        type: array
+    type: object
+  commun.WarnChart:
+    properties:
+      column:
+        $ref: '#/definitions/commun.MonitorChart2'
+      pie:
+        items:
+          $ref: '#/definitions/commun.WarnPieItem'
+        type: array
+    type: object
+  commun.WarnPieItem:
+    properties:
+      count:
+        type: integer
+      name:
+        type: string
+      percentage:
+        type: number
+    type: object
+  handle.Threshold:
+    properties:
+      cpu:
+        type: integer
+      disk:
+        type: integer
+      memory:
+        type: integer
+    type: object
+  model.Node:
+    properties:
+      account:
+        type: string
+      agentPort:
+        type: integer
+      appStatus:
+        type: string
+      conf:
+        type: string
+      ip:
+        type: string
+      isInit:
+        type: boolean
+      logs:
+        type: string
+      name:
+        type: string
+      os:
+        type: integer
+      password:
+        type: string
+      port:
+        type: integer
+      status:
+        type: boolean
+      templateId:
+        type: integer
+    type: object
+  notice.DingTalk:
+    properties:
+      agentID:
+        type: string
+      appKey:
+        type: string
+      appSecret:
+        type: string
+      hookAddr:
+        type: string
+      hookSecret:
+        type: string
+      hookTitle:
+        type: string
+      receive:
+        type: string
+      sessionID:
+        type: string
+    type: object
+  notice.PushConfig:
+    properties:
+      dingTalk:
+        $ref: '#/definitions/notice.DingTalk'
+      smtp:
+        $ref: '#/definitions/notice.SMTP'
+      weChat:
+        $ref: '#/definitions/notice.WeChat'
+    type: object
+  notice.SMTP:
+    properties:
+      addr:
+        type: string
+      pass:
+        type: string
+      port:
+        type: integer
+      receiveEmail:
+        type: string
+      ssl:
+        type: boolean
+      topic:
+        type: string
+      user:
+        type: string
+    type: object
+  notice.WeChat:
+    properties:
+      eappID:
+        type: integer
+      eappVoucher:
+        type: string
+      eid:
+        type: string
+      receiveUserID:
+        type: string
+    type: object
+  table.Template:
+    properties:
+      format:
+        type: boolean
+      name:
+        type: string
+      separator:
+        type: string
+      type:
+        type: integer
+      value:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/v1/analysis/chart:
+    get:
+      parameters:
+      - description: ' Start time '
+        in: query
+        name: startTime
+        type: string
+      - description: ' End time '
+        in: query
+        name: endTime
+        type: string
+      summary: analysis chart
+      tags:
+      - analysis
+  /api/v1/analysis/detailed:
+    get:
+      parameters:
+      - description: ' size'
+        in: query
+        name: size
+        type: string
+      - description: ' status'
+        in: query
+        name: status
+        type: string
+      - description: ' reqUrl'
+        in: query
+        name: reqUrl
+        type: string
+      - description: ' clientIp'
+        in: query
+        name: clientIp
+        type: string
+      - description: ' Start time '
+        in: query
+        name: startTime
+        type: string
+      - description: ' End time '
+        in: query
+        name: endTime
+        type: string
+      summary: analysis detailed
+      tags:
+      - analysis
+  /api/v1/analysis/list:
+    get:
+      parameters:
+      - description: ' status'
+        in: query
+        name: status
+        type: string
+      - description: ' reqUrl'
+        in: query
+        name: reqUrl
+        type: string
+      - description: ' clientIp'
+        in: query
+        name: clientIp
+        type: string
+      - description: ' Start time '
+        in: query
+        name: startTime
+        type: string
+      - description: ' End time '
+        in: query
+        name: endTime
+        type: string
+      - description: ' Interface timeout '
+        in: query
+        name: timeout
+        type: string
+      summary: analysis list
+      tags:
+      - analysis
+  /api/v1/bigscreen/1:
+    get:
+      summary: Warn big screen chart
+      tags:
+      - bigscreen
+  /api/v1/bigscreen/2:
+    get:
+      summary: Warn big screen chart
+      tags:
+      - bigscreen
+  /api/v1/bigscreen/3:
+    get:
+      parameters:
+      - description: ' time type, 0 1hour, 1 1day, 2 7day '
+        in: formData
+        name: type
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code": 200, "data": [...]}'
+          schema:
+            $ref: '#/definitions/commun.WarnChart'
+      summary: Warn big screen chart
+      tags:
+      - bigscreen
+  /api/v1/bigscreen/5:
+    get:
+      summary: screen 5
+      tags:
+      - bigscreen
+  /api/v1/bigscreen/6:
+    get:
+      summary: screen 6
+      tags:
+      - bigscreen
+  /api/v1/download/download_agent:
+    get:
+      summary: window agent download
+      tags:
+      - download
+  /api/v1/download/download_log:
+    get:
+      parameters:
+      - description: ' size'
+        in: query
+        name: size
+        type: string
+      summary: log download
+      tags:
+      - download
+  /api/v1/keyword/all:
+    get:
+      summary: All keywords
+      tags:
+      - keyword
+  /api/v1/monitor/nodeMonitor:
+    get:
+      parameters:
+      - description: chart type, 0 Cpu usage, 1 Cpu load, 2 Mem rate, 3 Disk part
+          rate, 4 Network recv, 5 Network send
+        in: query
+        name: chartType
+        required: true
+        type: string
+      - description: time type, 0 real time, 1 24hour, 2 7days, 3 custom
+        in: query
+        name: timeType
+        required: true
+        type: string
+      - description: time granular, 0 1minute, 1 5minute, 2 15minute, 3 1hour, 4 1day
+        in: query
+        name: granular
+        required: true
+        type: string
+      - description: Used when time type = 3 is customized
+        in: query
+        name: beginTime
+        type: string
+      - description: Used when time type = 3 is customized
+        in: query
+        name: endTime
+        type: string
+      responses:
+        "200":
+          description: '{"code": 200, "data": [...]}'
+          schema:
+            $ref: '#/definitions/commun.MonitorChart2'
+      summary: Query agent status
+      tags:
+      - Monitor
+  /api/v1/monitor/nodeStatus:
+    get:
+      responses:
+        "200":
+          description: '{"code": 200, "data": [...]}'
+          schema:
+            items:
+              $ref: '#/definitions/model.Node'
+            type: array
+      summary: Query agent status
+      tags:
+      - Monitor
+  /api/v1/node/editNode:
+    post:
+      parameters:
+      - description: node name
+        in: body
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: node ip
+        in: body
+        name: ip
+        required: true
+        schema:
+          type: string
+      - description: node port
+        in: body
+        name: port
+        required: true
+        schema:
+          type: integer
+      - description: ssh account
+        in: body
+        name: account
+        required: true
+        schema:
+          type: string
+      - description: ssh password
+        in: body
+        name: password
+        required: true
+        schema:
+          type: string
+      - description: agent port
+        in: body
+        name: agentPort
+        required: true
+        schema:
+          type: integer
+      - description: system type
+        in: body
+        name: os
+        required: true
+        schema:
+          type: integer
+      - description: nginx conf path
+        in: body
+        name: conf
+        required: true
+        schema:
+          type: string
+      - description: nginx logs path
+        in: body
+        name: logs
+        required: true
+        schema:
+          type: string
+      - description: template id
+        in: body
+        name: templateId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: '{"code": 200, "data": [...]}'
+          schema:
+            $ref: '#/definitions/model.Node'
+      summary: Query agent status
+      tags:
+      - Node
+  /api/v1/node/getNode:
+    get:
+      responses:
+        "200":
+          description: '{"code": 200, "data": [...]}'
+          schema:
+            items:
+              $ref: '#/definitions/model.Node'
+            type: array
+      summary: Query agent status
+      tags:
+      - Node
+  /api/v1/node/initNode:
+    post:
+      summary: node agent install
+      tags:
+      - base / node
+  /api/v1/template/delete/:id:
+    delete:
+      parameters:
+      - description: ' template  ID'
+        in: path
+        name: id
+        required: true
+        type: integer
+      summary: template delete
+      tags:
+      - template
+  /api/v1/template/dropDown:
+    get:
+      summary: template dropDown
+      tags:
+      - template
+  /api/v1/template/info/:id:
+    get:
+      parameters:
+      - description: ' template  ID'
+        in: path
+        name: id
+        required: true
+        type: integer
+      summary: template info
+      tags:
+      - template
+  /api/v1/template/manageList:
+    get:
+      parameters:
+      - description: ' Entries per page '
+        in: query
+        name: pageSize
+        type: string
+      - description: ' Page number '
+        in: query
+        name: pageNum
+        type: string
+      summary: template manageList
+      tags:
+      - template
+  /api/v1/template/save:
+    post:
+      parameters:
+      - description: ' object '
+        in: body
+        name: Template
+        required: true
+        schema:
+          $ref: '#/definitions/table.Template'
+      summary: template save
+      tags:
+      - template
+  /api/v1/template/update/:id:
+    post:
+      parameters:
+      - description: ' template  ID'
+        in: path
+        name: id
+        required: true
+        type: integer
+      summary: template update
+      tags:
+      - template
+  /api/v1/user/login:
+    post:
+      parameters:
+      - description: ' username '
+        in: formData
+        name: username
+        required: true
+        type: string
+      - description: ' password '
+        in: formData
+        name: password
+        required: true
+        type: string
+      summary: login
+      tags:
+      - user
+  /api/v1/user/logout:
+    get:
+      summary: logout
+      tags:
+      - user
+  /api/v1/warn/getPushConfig:
+    get:
+      parameters:
+      - description: ' smtp|wechat|dingtalk '
+        in: formData
+        name: name
+        required: true
+        type: string
+      summary: getPushConfig
+      tags:
+      - Warn
+  /api/v1/warn/getThreshold:
+    get:
+      summary: getThreshold
+      tags:
+      - warn
+  /api/v1/warn/savePushConfig:
+    post:
+      parameters:
+      - description: ' object '
+        in: body
+        name: PushConfig
+        required: true
+        schema:
+          $ref: '#/definitions/notice.PushConfig'
+      summary: savePushConfig
+      tags:
+      - warn
+  /api/v1/warn/saveThreshold:
+    post:
+      parameters:
+      - description: ' object '
+        in: body
+        name: Threshold
+        required: true
+        schema:
+          $ref: '#/definitions/handle.Threshold'
+      summary: saveThreshold
+      tags:
+      - warn
+  /api/v1/warn/warnList:
+    get:
+      parameters:
+      - description: ' type '
+        in: formData
+        name: type
+        required: true
+        type: string
+      - description: ' beginTime '
+        in: formData
+        name: beginTime
+        required: true
+        type: string
+      - description: ' endTime '
+        in: formData
+        name: endTime
+        required: true
+        type: string
+      summary: warnList
+      tags:
+      - warn
+  /api/v1/warn/warnStatistics:
+    get:
+      parameters:
+      - description: ' beginTime '
+        in: formData
+        name: beginTime
+        required: true
+        type: string
+      - description: ' endTime '
+        in: formData
+        name: endTime
+        required: true
+        type: string
+      summary: warnStatistics
+      tags:
+      - warn
+swagger: "2.0"

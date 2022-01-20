@@ -1,0 +1,30 @@
+Gormv2: #  Only for  gorm   The operation database is valid 
+  UseDbType: "mysql"  #  Alternatives  mysql 、sqlserver、 postgresql
+  Mysql:
+    IsInitGolobalGormMysql: 1    #  Start with project as gorm db Initialize a global  variable.GormDbMysql（ Exactly equal to *gorm.Db）, Configure the database correctly ， The value must be set to : 1
+    SlowThreshold: 30            #  slow  SQL  threshold (sql Execution time exceeds this time unit （ second ）， System logging is triggered )
+    Write:
+      Host: "42.192.173.120"
+      DataBase: "edgelog_demo"
+      Port: 35606
+      Prefix: ""
+      User: "godev"
+      Pass: "$o1g14Tf"
+      Charset: "utf8mb4"
+      SetMaxIdleConns: 10
+      SetMaxOpenConns: 128
+      SetConnMaxLifetime: 60    #  Maximum lifetime when connection is inactive ( second )
+      #ReConnectInterval: 1    #  Reserved items , Seconds between reconnections to the database 
+      #PingFailRetryTimes: 3   #  Reserved items , Maximum number of reconnections 
+    IsOpenReadDb: 0                     #  Enable read / write separation configuration （1= open 、0= close ），IsOpenReadDb=1,Read  Some parameters are valid ， otherwise Read Some parameters are ignored directly 
+    Read:
+      Host: "127.0.0.1"
+      DataBase: "db_edgelog"
+      Port: 3308                        # be careful ， wrong 3306， Please adjust yourself 
+      Prefix: "tb_"
+      User: "root"
+      Pass: "yourPassword"
+      Charset: "utf8"
+      SetMaxIdleConns: 10
+      SetMaxOpenConns: 128
+      SetConnMaxLifetime: 60

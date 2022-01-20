@@ -1,0 +1,10 @@
+/.idea/
+.idea/
+.idea
+.vscode/
+/storage/logs/*
+/storage/uploaded/*
+/public/storage
+/routers/common/notice/weixin_test.go
+/routers/common/notice/dingtalk_test.go
+/routers/common/notice/email_test.go

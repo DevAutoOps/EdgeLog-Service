@@ -1,0 +1,31 @@
+AppDebug: true   #  Sets the mode the program is in ，debug=true  Debug mode ， Logs are preferentially displayed on the console ， debug=false  Non debug mode ， Write to log file 
+
+HttpServer:
+  Api:
+    Port: ":20191"                 # Portal class port , Notice the colon in front 
+  AllowCrossDomain: true           # Allow cross domain ， default   allow ， be careful ： The project is cross domain and nginx Only one can be set across domains ， If cross domain is set at the same time ， On the contrary, it will make it impossible to cross domains 
+  ProbesMonitorPort: 20203
+  ProbesLogPort: 20204
+
+Logs:
+  GinLogName: "/storage/logs/gin.log"                  # set up  gin  Interface access log of framework 
+  edgelogLogName: "/storage/logs/edgelog.log"    # set up edgelog Project skeleton runtime log file name ， Note that the name does not duplicate the previous one  , Avoid and  gin  The logs of the framework are mixed together ， Cause chaos 。
+  TextFormat: "json"                                # Format of log ， Parameter options ：console、json ， console  Represents the general text format 
+  TimePrecision: "millisecond"                         # When logging ， Related time accuracy ， This parameter option ：second  、 millisecond ，  Respectively represent   second   and   millisecond  , The default is the millisecond level 
+  MaxSize: 10                                           # Maximum size of each log ( with MB Unit ），  This value is exceeded ， The system will cut automatically 
+  MaxBackups: 7                                        # Maximum number of old logs retained 
+  MaxAge: 15                                           # Maximum number of days to keep old logs 
+  Compress: false                                      # Log backup ， Compress 
+
+SnowFlake:
+  SnowFlakeMachineId: 2               # If the project is deployed on multiple machines at the same time ， And the algorithm needs to be used at the same time ， Please set different settings for each machine ID， Interval range : [0,1023]
+
+Taos:
+  Host: "127.0.0.1"
+  Port: 6030
+  User: "root"
+  Pass: "taosdata"
+  DataBase: "edgelog_demo"
+
+Agent:
+  Ip: 192.168.1.10
