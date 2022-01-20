@@ -86,4 +86,8 @@ Please follow the [installation documentation](http://edgelog.devautoops.com/hel
 
 We continue to iterate according to the needs of the market and enterprises, and are also willing to provide professional customized services based on the particularity of the scene。If necessary, go to [Contact Us](http://edgelog.devautoops.com).
 
+## Others
+
+Agent is another part of EdgeLog system, and it is designed to collect log statics from application program running on client machine. If you want to konw more about Agent, [click](https://github.com/DevAutoOps/EdgeLog-Agent).
+
 
