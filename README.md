@@ -60,7 +60,7 @@ To learn more about the EdgeLog management system, you can visit the official we
 
 ## Demo address
 
-Experience EdgeLog Open Source Edition Online [Demo System](https://demo.edgelog.devautoops.com)。
+Experience EdgeLog Open Source Edition Online [Demo System](http://demo.edgelog.devautoops.com)。
 
 ## System screenshot
 ![Dashboard](./dashboard.png)
